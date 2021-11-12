@@ -21,7 +21,7 @@ using System.Reflection;
 
 
 
-[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="dbEmpAppraisal")]
+[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="dbEMPAppraisel")]
 public partial class DataClassesDataContext : System.Data.Linq.DataContext
 {
 	
@@ -3353,6 +3353,8 @@ public partial class tblFeedback : INotifyPropertyChanging, INotifyPropertyChang
 	
 	private System.DateTime _CreatedOn;
 	
+	private System.Nullable<int> _EmpID;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3373,6 +3375,8 @@ public partial class tblFeedback : INotifyPropertyChanging, INotifyPropertyChang
     partial void OnIsReadChanged();
     partial void OnCreatedOnChanging(System.DateTime value);
     partial void OnCreatedOnChanged();
+    partial void OnEmpIDChanging(System.Nullable<int> value);
+    partial void OnEmpIDChanged();
     #endregion
 	
 	public tblFeedback()
@@ -3536,6 +3540,26 @@ public partial class tblFeedback : INotifyPropertyChanging, INotifyPropertyChang
 				this._CreatedOn = value;
 				this.SendPropertyChanged("CreatedOn");
 				this.OnCreatedOnChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpID", DbType="Int")]
+	public System.Nullable<int> EmpID
+	{
+		get
+		{
+			return this._EmpID;
+		}
+		set
+		{
+			if ((this._EmpID != value))
+			{
+				this.OnEmpIDChanging(value);
+				this.SendPropertyChanging();
+				this._EmpID = value;
+				this.SendPropertyChanged("EmpID");
+				this.OnEmpIDChanged();
 			}
 		}
 	}

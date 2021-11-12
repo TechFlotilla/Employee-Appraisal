@@ -65,13 +65,17 @@ public partial class FeedBack : System.Web.UI.Page
         try
         {
             string Point = txtRate.Value;
+            
             if (!IsPostBack)
             {
                 var DC = new DataClassesDataContext();
+               
                 int cnt = (from ob in DC.tblClients
                            where ob.ClientID == Convert.ToUInt32(Session["ClientID"])
                            select ob).Count();
-                if (cnt > 0)
+                
+              
+              if (cnt > 0)
                 {
                     tblClient Data = (from ob in DC.tblClients
                                       where ob.ClientID == Convert.ToUInt32(Session["ClientID"])
@@ -95,6 +99,8 @@ public partial class FeedBack : System.Web.UI.Page
             ClientScript.RegisterStartupScript(GetType(), "abc", "alert('Something went wrong! Try again');", true);
         }
     }
+
+    
 
     //protected void txtEmail_TextChanged(object sender, EventArgs e)
     //{

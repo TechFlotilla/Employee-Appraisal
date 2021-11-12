@@ -1,0 +1,19 @@
+Vishnu - 
+
+We want add Users funcationality to our application
+Create User domain model for User 
+Create migrations for User, table name should be tblUsers
+User has Id, Name, DateOfBirth, Gender
+
+POST 	api/users
+PUT 	api/users/{userid}
+DELETE 	api/users/{userid}
+GET 	api/users
+GET 	api/users/{userid}
+
+	
+Validation : 
+	Name is required, should be alphabits only, max 50 characters
+	DateOfBirth is required, should be proper date , should be before 1 Jan, 2010
+	Gender is required, should be only Male, Female or Other(Use Enums)
+	Validate to make sure the userid supplied is always a positive integer

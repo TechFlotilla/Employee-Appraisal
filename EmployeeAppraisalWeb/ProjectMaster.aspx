@@ -131,11 +131,13 @@
 
             <div class="banner2">
                 <div class="w3l_banner_info" style="padding: 1em 0;">
-                    <h1 style="color: #fff; padding-left: 10px; margin-top: 5px;">Board For
+                    <h1 style="color: #fff; padding-left: 10px; margin-top: 5px;">Board For</h1>
                         <asp:LinkButton ID="lnkPersonType" runat="server" Style="color: #fff; text-decoration: none;" OnClick="lnkPersonType_Click"></asp:LinkButton>
                         <hr style="background: #808080; border: 1px inset #808080; margin-top: 5px;" />
                         <asp:Button ID="Button1" runat="server" PostBackUrl="Dashboard.aspx" Text="Dashboard" Style="background-color: transparent; border: #808080; color: #fff; font-weight: bolder; font-size: 18px; margin-left: 10px;" />
-                        <asp:Button ID="Button2" runat="server" Text="Board" Style="background-color: transparent; border: #808080; color: #e6cb29; font-weight: bolder; font-size: 18px;" />
+                        <asp:Button ID="Button2" runat="server" Text="Board" Style="background-color: transparent; border: #808080; color: #e6cb29; font-weight: bolder; font-size: 18px;" Width="74px" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                    <asp:Button ID="Button3" runat="server" Text="Feedback" Width="86px" Style="background-color: transparent; border: #808080; color: #fff; font-weight: bolder; font-size: 18px;" PostBackUrl="~/EMPFeedback.aspx"/>
                 </div>
             </div>
 
