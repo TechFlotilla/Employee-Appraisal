@@ -254,4 +254,9 @@ public partial class Admin_MasterPage : System.Web.UI.MasterPage
     {
         Response.Redirect("ViewAppraisal.aspx");
     }
+
+    protected void AppraiselNotifiction_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("SendAppraisel.aspx");
+    }
 }

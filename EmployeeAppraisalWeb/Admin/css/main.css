@@ -41,7 +41,11 @@ sub, sup { position: relative; font-size: 75%; line-height: 0; vertical-align: b
 sup { top: -0.5em; }
 sub { bottom: -0.25em; }
 img { width: auto\9; height: auto; max-width: 100%; vertical-align: middle; border: 0; -ms-interpolation-mode: bicubic; }
-button, input, select, textarea { margin: 0; font-size: 100%; }
+button, input, select, textarea { font-size: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+}
 button, input { *overflow: visible; line-height: normal; }
 button::-moz-focus-inner, input::-moz-focus-inner { padding: 0; border: 0; }
 button, html input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; }
@@ -122,7 +126,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 .row-fluid .span7 { width: 57.44680851063829%; *width: 57.39361702127659%; }
 .row-fluid .span6 { width: 48.93617021276595%; *width: 48.88297872340425%; }
 .row-fluid .span5 { width: 40.42553191489362%; *width: 40.37234042553192%; }
-.row-fluid .span4 { width: 31.914893617021278%; *width: 31.861702127659576%; }
+.row-fluid .span4 { width: 31.914893617021278%; *width: 80%; }
 .row-fluid .span3 { width: 23.404255319148934%; *width: 23.351063829787233%; }
 .row-fluid .span2 { width: 14.893617021276595%; *width: 14.840425531914894%; }
 .row-fluid .span1 { width: 6.382978723404255%; *width: 6.329787234042553%; }

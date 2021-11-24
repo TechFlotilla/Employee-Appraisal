@@ -307,6 +307,9 @@
                                 </li>
                                 <li><a href="#" title="" class="expand"><i class="icon-reorder"></i>Appraisal</a>
                                     <ul>
+                                        <li>
+                                            <asp:LinkButton ID="AppraiselNotifiction" runat="server" OnClick="AppraiselNotifiction_Click">Send Appraisel Notification</asp:LinkButton>
+                                        </li>
                                         <%--ViewAppraisal.aspx--%>
                                         <li>
                                             <asp:LinkButton ID="ViewAppraisal" runat="server" OnClick="ViewAppraisal_Click">View Appraisal & Generate</asp:LinkButton>

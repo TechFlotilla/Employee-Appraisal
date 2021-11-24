@@ -110,9 +110,10 @@ code, kbd, pre, samp {
 }
 
 button, input, optgroup, select, textarea {
-    margin: 0;
-    font: inherit;
     color: inherit;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
 }
 
 button {

@@ -137,8 +137,7 @@
                         <asp:Button ID="Button1" runat="server" PostBackUrl="Dashboard.aspx" Text="Dashboard" Style="background-color: transparent; border: #808080; color: #fff; font-weight: bolder; font-size: 18px; margin-left: 10px;" />
                         <asp:Button ID="Button2" runat="server" Text="Board" Style="background-color: transparent; border: #808080; color: #e6cb29; font-weight: bolder; font-size: 18px;" Width="74px" />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                    <asp:Button ID="Button3" runat="server" Text="Feedback" Width="86px" Style="background-color: transparent; border: #808080; color: #fff; font-weight: bolder; font-size: 18px;" PostBackUrl="~/EMPFeedback.aspx"/>
-                </div>
+                    </div>
             </div>
 
             <div style="margin-bottom: 20px; margin-top: 20px;">
@@ -202,7 +201,7 @@
                                                                 <asp:LinkButton ID="LnkDelete" runat="server" CommandName="DeleteModule" CommandArgument='<%# Eval("ModuleID") %>'><i class="icon-trash"></i>Delete</asp:LinkButton></li>
                                                         </ul>
                                                     </div>
-                                                    <br />
+                                                    <br /> 
                                                     <asp:HiddenField ID="hdnCnt" runat="server" Value="0" />
                                                     <div style="margin-top: 10px; margin-bottom: 5px;">
                                                         <asp:LinkButton ID="LnkNewTask" class="lnkViewTask" runat="server" Text='' CommandArgument='<%# Eval("ModuleID") %>' CommandName="OpenPanelViewTask"></asp:LinkButton>

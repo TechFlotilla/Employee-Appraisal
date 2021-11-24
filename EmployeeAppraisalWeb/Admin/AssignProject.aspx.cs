@@ -212,6 +212,7 @@ public partial class Admin_Project : System.Web.UI.Page
                                       where ob.ProjectID == ProjectID
                                       select ob).Single();
             //Notification
+            
             tblNotification Notification = new tblNotification();
             Notification.Title = "Assign Project Manager";
             Notification.Description = "You are selected Project Manager for" + " " + ProjectName.Title;

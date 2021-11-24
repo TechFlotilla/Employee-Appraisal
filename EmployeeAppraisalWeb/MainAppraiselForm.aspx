@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EMPFeedback.aspx.cs" Inherits="EMPFeedback" MasterPageFile="~/MasterPage.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="MainAppraiselForm.aspx.cs" Inherits="MainAppraiselForm" MasterPageFile ="~/MasterPage.master" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -62,6 +63,40 @@
             font-family: FontAwesome;
         }
     </style>
+    <style>
+         input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            margin: 13.8px 0;
+        }
+          input[type=range]:focus {
+                outline: none;
+          }
+
+            input[type=range]::-webkit-slider-runnable-track {
+                width: 100%;
+                height: 6.4px;
+                cursor: pointer;
+                background: #008BFF;
+                border-radius: 1.3px;
+            }
+             input[type=range]::-webkit-slider-thumb {
+                /*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
+                border: 1px solid #000000;
+                height: 20px;
+                width: 10px;
+                border-radius: 4px;
+                background: #ded3d3;
+                cursor: pointer;
+                -webkit-appearance: none;
+                margin-top: -7px;
+            }
+
+            input[type=range]:focus::-webkit-slider-runnable-track {
+                background: #367ebd;
+            }
+
+    </style>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -83,7 +118,7 @@
     <asp:updatepanel id="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="container feedback" style="height: 100%; width: 100%; margin-top: 0px; margin-bottom: 20px;">
-                <h1 class="header-w3ls">Feedback Form</h1>
+                <h1 class="header-w3ls">AppRaisel Form</h1>
                 <div class="content-w3ls" style="height: 750px; width: 1000px;">
                     <div class="form-w3ls">
                         <div class="content-wthree1">
@@ -93,7 +128,7 @@
                                         <asp:Label ID="lblEmail" class="header" runat="server">Email Address <span>:</span></asp:Label>
                                     </div>
                                     <div class="col-md-6" style="margin-top: 20px; margin-left: -18px;">
-                                        <asp:DropDownList ID="ddEmployee0" runat="server" Style="font-size: 14px; border: 1px solid #fff; color: #fff; height: 35px; width: 250px; border-radius: 5px;" OnSelectedIndexChanged="ddEmployee0_SelectedIndexChanged" AutoPostBack="true">
+                                        <asp:DropDownList ID="ddEmployee" runat="server" Style="font-size: 14px; border: 1px solid #fff; color: #fff; height: 35px; width: 250px; border-radius: 5px;" AutoPostBack="true">
                                             <asp:ListItem Value="EmpMail">Employees-Mail</asp:ListItem>
                                             <%--<asp:ListItem Value="1">PHP Book</asp:ListItem>
                                         <asp:ListItem Value="Products">Products</asp:ListItem>
@@ -128,11 +163,49 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-md-12" style="margin-top: 30px; margin-left:0px;">
-                                    <div class="col-md-6 header" style="margin-left:-8px;">
-                                        <asp:Label ID="Label1" class="header" runat="server">Organization <span>:</span></asp:Label>
-                                    </div>
+                                    
                                     <div class="col-md-6" style="margin-top: 20px; margin-left: -18px;">
-                                        <asp:TextBox ID="txtOrgn" class="form-control" runat="server" placeholder="Organization" title="Please enter your Organization" required="" pattern="[a-zA-Z ]+" Style="font-size: 14px; border: 1px solid #fff; color: #fff; height: 35px; width: 250px;"></asp:TextBox>
+                                              <div class="col-md-3" style="border: 0px solid; padding-bottom: 31px;">
+                                    <div id="PanelAppraisal" runat="server">
+                                        <asp:LinkButton ID="LinkButton1" runat="server" Width="100%" Style="font-weight: bolder; color: #5a5a5a; border: 0px solid; border-bottom: 1px solid; padding-bottom: 2px; border-bottom-color: #808080;">Employee Appraisal</asp:LinkButton>
+                                        <div class="col-md-12" style="margin-top: 8px; margin-left: -30px;">
+                                            <div class="col-md-5" style="margin-top: 7px;">
+                                                <asp:Label ID="Label2" runat="server" Text="Quality" Style="font-size: 14px; color: #808080; margin-top: 10px;"></asp:Label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <%--<input type="range" name="rngQuality" min="1" max="5" value="1" style="cursor: pointer;" />--%>
+                                                <asp:TextBox ID="rngQuality" type="range" runat="server" min="1" max="5" Text="1" Style="cursor: pointer;"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top: 8px; margin-left: -30px;">
+                                            <div class="col-md-5" style="margin-top: 7px;">
+                                                <asp:Label ID="Label9" runat="server" Text="Avialibility" Style="font-size: 14px; color: #808080; margin-top: 10px;"></asp:Label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <%--<input type="range" name="rngAva" min="1" max="5" value="1" style="cursor: pointer;" />--%>
+                                                <asp:TextBox ID="rngAvialibility" type="range" runat="server" min="1" max="5" Text="1" Style="cursor: pointer;"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top: 8px; margin-left: -30px;">
+                                            <div class="col-md-5" style="margin-top: 7px;">
+                                                <asp:Label ID="Label11" runat="server" Text="Communication" Style="font-size: 14px; color: #808080; margin-top: 10px;"></asp:Label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <%--<input type="range" name="rngComm" min="1" max="5" value="1" style="cursor: pointer;" />--%>
+                                                <asp:TextBox ID="rngCommunication" type="range" runat="server" min="1" max="5" Text="1" Style="cursor: pointer;"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top: 8px; margin-left: -30px;">
+                                            <div class="col-md-5" style="margin-top: 7px;">
+                                                <asp:Label ID="Label12" runat="server" Text="Cooperation" Style="font-size: 14px; color: #808080; margin-top: 10px;"></asp:Label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <%--<input type="range" name="rngCoop" min="1" max="5" value="1" style="cursor: pointer;" />--%>
+                                                <asp:TextBox ID="rngCooperation" type="range" runat="server" min="1" max="5" Text="1" Style="cursor: pointer;"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +239,7 @@
                     <div class="col-md-12 content-wthree3">
                         <div class="col-md-12" style="margin-left:5px;">
                             <div class="col-md-12 enquiry" style="margin-left: 15px;">
-                                <asp:Label ID="lblEnquiry" class="enquiry" runat="server">Customer Enquiry <span>:</span></asp:Label>
+                                <asp:Label ID="lblEnquiry" class="enquiry" runat="server">Feedback <span>:</span></asp:Label>
                             </div>
                             <div class="col-md-12 message" style="margin-left: -273px; margin-top: 15px;">
                                 <asp:TextBox ID="txtEnquiry" class="form-control" runat="server" TextMode="MultiLine" placeholder="Your Queries" title="Please enter Your Queries" Style="background-color: #333; font-size: 14px; border: 1px solid #fff; color: #fff; height: 150px; padding: 15px; width: 147%;" required="" pattern="[a-zA-Z ]+"></asp:TextBox>

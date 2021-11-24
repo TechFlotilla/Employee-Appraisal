@@ -1,17 +1,15 @@
-﻿using System;
+﻿using EmployeeAppraisalServiceReference;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data;
-using System.Data.SqlClient;
+using System.Net;
+using System.Net.Mail;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EmployeeAppraisalServiceReference;
-using System.Net.NetworkInformation;
-using System.Net;
-using System.Net.Mail;
 
-public partial class EMPFeedback : System.Web.UI.Page
+public partial class MainAppraiselForm : System.Web.UI.Page
 {
     ServiceClient objFeedBack = new ServiceClient();
     public static string GetMacAddress()
@@ -62,7 +60,6 @@ public partial class EMPFeedback : System.Web.UI.Page
         DC.tblErrors.InsertOnSubmit(objError);
         DC.SubmitChanges();
     }
-
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -71,16 +68,22 @@ public partial class EMPFeedback : System.Web.UI.Page
 
             if (!IsPostBack)
             {
+
+
                 var DC = new DataClassesDataContext();
 
+                BindPersonType(Convert.ToInt32(Session["EmpID"]));
+                
+
                 int emp = (from ob in DC.tblEmployees
-                           where ob.EmpID == Convert.ToUInt32(Session["EmpID"])
+                           where ob.EmpID == Convert.ToInt32(Session["EmpID"])
                            select ob).Count();
 
+                
 
                 var project = (from ob in DC.tblProjects
-                              where ob.ProjectID == Convert.ToUInt32(Session["ProjectID"])
-                              select ob).Single();
+                               where ob.ProjectID == Convert.ToInt32(Session["ProjectId"])
+                               select ob).SingleOrDefault();
 
 
 
@@ -89,7 +92,7 @@ public partial class EMPFeedback : System.Web.UI.Page
                 if (emp > 0)
                 {
                     tblEmployee Data = (from ob in DC.tblEmployees
-                                        where ob.EmpID == Convert.ToUInt32(Session["EmpID"])
+                                        where ob.EmpID == Convert.ToInt32(Session["EmpID"])
                                         select ob).Single();
                     tblClient org = (from ob in DC.tblClients
                                      where ob.ClientID == project.ClientID
@@ -102,16 +105,16 @@ public partial class EMPFeedback : System.Web.UI.Page
 
 
                     //txtEmail.Text = Data.EmailID;
-                    ddEmployee0.DataSource = BindEMPMail(project.ProjectID);
-                    ddEmployee0.DataValueField = "EmpID";
-                    ddEmployee0.DataTextField = "EmailID";
-                    ddEmployee0.DataBind();
-                    txtName.Text = GetEmpName(Convert.ToInt32(ddEmployee0.SelectedValue));
-                    txtOrgn.Text = org.CompanyName;
+                    ddEmployee.DataSource = BindEMPMail(project.ProjectID);
+                    ddEmployee.DataValueField = "EmpID";
+                    ddEmployee.DataTextField = "EmailID";
+                    ddEmployee.DataBind();
+                    txtName.Text = GetEmpName(Convert.ToInt32(ddEmployee.SelectedValue));
 
 
 
-                    ddProduct.DataSource = BindEMPProject( project.ProjectID);
+
+                    ddProduct.DataSource = BindEMPProject(project.ProjectID);
                     //ddProduct.DataSource = ProjectDetail;
                     ddProduct.DataValueField = "ProjectID";
                     ddProduct.DataTextField = "Title";
@@ -119,7 +122,7 @@ public partial class EMPFeedback : System.Web.UI.Page
 
 
                 }
-               
+
             }
         }
         catch (Exception ex)
@@ -132,7 +135,11 @@ public partial class EMPFeedback : System.Web.UI.Page
         }
     }
 
-    public string GetEmpName(int empId)
+    private void BindPersonType(int EmpID)
+    {
+        
+    }
+        public string GetEmpName(int empId)
     {
         var DC = new DataClassesDataContext();
         var Data = from obj in DC.tblEmployees
@@ -146,7 +153,7 @@ public partial class EMPFeedback : System.Web.UI.Page
     {
         var DC = new DataClassesDataContext();
         var Data = from obj in DC.tblProjects
-                   where  obj.ProjectID== projectID
+                   where obj.ProjectID == projectID
                    select obj;
         return Data;
     }
@@ -155,7 +162,7 @@ public partial class EMPFeedback : System.Web.UI.Page
         var DC = new DataClassesDataContext();
         var data = DC.tblModules.Single(ob => ob.ProjectID == projectId);
 
-       // var data = from obj in
+        // var data = from obj in
 
         var validM = (from obj in DC.tblTeams
                       join obj2 in DC.tblTeamMembers
@@ -183,6 +190,9 @@ public partial class EMPFeedback : System.Web.UI.Page
             return false;
         }
     }
+
+
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         if (CheckForInternetConnection() == true)
@@ -200,8 +210,8 @@ public partial class EMPFeedback : System.Web.UI.Page
                     ProjectID = 0;
                 }
 
-            
-                
+
+
 
                 int Point = Convert.ToInt32(txtRate.Value);
 
@@ -217,7 +227,7 @@ public partial class EMPFeedback : System.Web.UI.Page
                 }
                 else
                 {
-                    bool obj = objFeedBack.GiveFeedback(ddEmployee0.SelectedItem.Text, ProjectID, Point, txtEnquiry.Text);
+                    bool obj = objFeedBack.GiveFeedback(ddEmployee.SelectedItem.Text, ProjectID, Point, txtEnquiry.Text);
                     if (obj == true)
                     {
 
@@ -366,6 +376,7 @@ public partial class EMPFeedback : System.Web.UI.Page
                     }
                 }
 
+
             }
             catch (Exception ex)
             {
@@ -382,30 +393,76 @@ public partial class EMPFeedback : System.Web.UI.Page
         }
     }
 
-    public int Rating(string Id)
+    //public void SetAppraisel()
+    //{
+    //    var DC = new DataClassesDataContext();
+    //    tblTeamModule MemberData = DC.tblTeamModules.Single(ob => ob.ModuleID == Convert.ToInt32(ltrModuleID.Text));
+    //    int cntEmpAppraisal = DC.tblEmpAppraisals.Count(ob => ob.EmpID == MemberData.EmpID);
+
+    //    if (MemberData.EmpID != null)
+    //    {
+    //        if (cntEmpAppraisal > 0)
+    //        {
+    //            tblEmpAppraisal EmpAppraisalData = DC.tblEmpAppraisals.Single(ob => ob.EmpID == MemberData.EmpID);
+    //            EmpAppraisalData.Quality = EmpAppraisalData.Quality + Convert.ToDecimal(rngQuality.Text);
+    //            EmpAppraisalData.Avialibility = EmpAppraisalData.Avialibility + Convert.ToDecimal(rngAvialibility.Text);
+    //            EmpAppraisalData.Communication = EmpAppraisalData.Communication + Convert.ToDecimal(rngCommunication.Text);
+    //            EmpAppraisalData.Cooperation = EmpAppraisalData.Cooperation + Convert.ToDecimal(rngCooperation.Text);
+    //        }
+    //        else
+    //        {
+    //            int cntAppraisal = DC.tblTeamModules.Count(ob => ob.ModuleID == Convert.ToInt32(ltrModuleID.Text));
+    //            //Response.Redirect(cntAppraisal.ToString());
+    //            if (cntAppraisal > 0)
+    //            {
+    //                tblEmpAppraisal EmpAppraisalData = new tblEmpAppraisal();
+    //                EmpAppraisalData.EmpID = MemberData.EmpID;
+    //                EmpAppraisalData.Quality = Convert.ToDecimal(rngQuality.Text);
+    //                EmpAppraisalData.Avialibility = Convert.ToDecimal(rngAvialibility.Text);
+    //                EmpAppraisalData.Communication = Convert.ToDecimal(rngCommunication.Text);
+    //                EmpAppraisalData.Cooperation = Convert.ToDecimal(rngCooperation.Text);
+    //                EmpAppraisalData.Skills = Convert.ToDecimal(0.0);
+    //                EmpAppraisalData.Deadlines = Convert.ToDecimal(0.0);
+    //                EmpAppraisalData.CreatedOn = DateTime.Now;
+    //                EmpAppraisalData.CreatedBy = Convert.ToInt32(Session["EmpID"]);
+    //                DC.tblEmpAppraisals.InsertOnSubmit(EmpAppraisalData);
+    //            }
+
+    //        }
+    //    }
+
+    //    //public int Rating(string Id)
+    //    //{
+    //    //    int Rating = 0;
+    //    //    switch (Id)
+    //    //    {
+    //    //        case "star-1": Rating = 1; break;
+    //    //        case "star-2": Rating = 2; break;
+    //    //        case "star-3": Rating = 3; break;
+    //    //        case "star-4": Rating = 4; break;
+    //    //        case "star-5": Rating = 5; break;
+
+    //    //    }
+
+    //    //    return Rating;
+
+    //    //}
+       
+
+
+    //}
+    protected void ddEmployee0_SelectedIndexChanged(object sender, EventArgs e)
     {
-        int Rating = 0;
-        switch(Id)
-        {
-            case "star-1": Rating = 1;break;
-            case "star-2": Rating = 2;break;
-            case "star-3": Rating = 3;break;
-            case "star-4": Rating = 4;break;
-            case "star-5": Rating = 5;break;
-
-        }
-
-        return Rating;
+        txtName.Text = GetEmpName(Convert.ToInt32(ddEmployee.SelectedValue));
 
     }
     protected void btnReset_Click(object sender, EventArgs e)
     {
         try
         {
-            ddEmployee0.SelectedValue = " ";
+            ddEmployee.SelectedValue = " ";
             txtEnquiry.Text = " ";
             txtName.Text = " ";
-            txtOrgn.Text = " ";
             ddProduct.SelectedValue = " ";
 
         }
@@ -417,11 +474,5 @@ public partial class EMPFeedback : System.Web.UI.Page
             AddErrorLog(ref ex, PageName, "Employee", session, 0, MACAddress);
             ClientScript.RegisterStartupScript(GetType(), "abc", "alert('Something went wrong! Try again');", true);
         }
-    }
-
-    protected void ddEmployee0_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        txtName.Text = GetEmpName(Convert.ToInt32(ddEmployee0.SelectedValue));
-
     }
 }

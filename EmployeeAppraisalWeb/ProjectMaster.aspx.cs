@@ -71,6 +71,7 @@ public partial class ProjectMaster : System.Web.UI.Page
                 hdnProjectID.Value = ProjectDetail[0];
                 lblProjectName.Text = ProjectDetail[1];
                 Session["ProjectName"] = ProjectDetail[1];
+                Session.Add("ProjectId", Convert.ToInt32(Session["ProjectID"]));
 
                 rptNew.DataSource = ProjectObject.BindNewProject(Convert.ToInt32(Session["ProjectID"]));
                 rptNew.DataBind();
@@ -341,6 +342,7 @@ public partial class ProjectMaster : System.Web.UI.Page
     {
 
     }
+
 
     protected void rptNew_ItemCommand(object source, RepeaterCommandEventArgs e)
     {

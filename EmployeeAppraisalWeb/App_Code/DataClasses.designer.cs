@@ -3355,6 +3355,14 @@ public partial class tblFeedback : INotifyPropertyChanging, INotifyPropertyChang
 	
 	private System.Nullable<int> _EmpID;
 	
+	private System.Nullable<int> _Year;
+	
+	private System.Nullable<int> _peerEmpID;
+	
+	private System.Nullable<int> _ManagerID;
+	
+	private string _FeedbackType;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3377,6 +3385,14 @@ public partial class tblFeedback : INotifyPropertyChanging, INotifyPropertyChang
     partial void OnCreatedOnChanged();
     partial void OnEmpIDChanging(System.Nullable<int> value);
     partial void OnEmpIDChanged();
+    partial void OnYearChanging(System.Nullable<int> value);
+    partial void OnYearChanged();
+    partial void OnpeerEmpIDChanging(System.Nullable<int> value);
+    partial void OnpeerEmpIDChanged();
+    partial void OnManagerIDChanging(System.Nullable<int> value);
+    partial void OnManagerIDChanged();
+    partial void OnFeedbackTypeChanging(string value);
+    partial void OnFeedbackTypeChanged();
     #endregion
 	
 	public tblFeedback()
@@ -3560,6 +3576,86 @@ public partial class tblFeedback : INotifyPropertyChanging, INotifyPropertyChang
 				this._EmpID = value;
 				this.SendPropertyChanged("EmpID");
 				this.OnEmpIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
+	public System.Nullable<int> Year
+	{
+		get
+		{
+			return this._Year;
+		}
+		set
+		{
+			if ((this._Year != value))
+			{
+				this.OnYearChanging(value);
+				this.SendPropertyChanging();
+				this._Year = value;
+				this.SendPropertyChanged("Year");
+				this.OnYearChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_peerEmpID", DbType="Int")]
+	public System.Nullable<int> peerEmpID
+	{
+		get
+		{
+			return this._peerEmpID;
+		}
+		set
+		{
+			if ((this._peerEmpID != value))
+			{
+				this.OnpeerEmpIDChanging(value);
+				this.SendPropertyChanging();
+				this._peerEmpID = value;
+				this.SendPropertyChanged("peerEmpID");
+				this.OnpeerEmpIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManagerID", DbType="Int")]
+	public System.Nullable<int> ManagerID
+	{
+		get
+		{
+			return this._ManagerID;
+		}
+		set
+		{
+			if ((this._ManagerID != value))
+			{
+				this.OnManagerIDChanging(value);
+				this.SendPropertyChanging();
+				this._ManagerID = value;
+				this.SendPropertyChanged("ManagerID");
+				this.OnManagerIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeedbackType", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+	public string FeedbackType
+	{
+		get
+		{
+			return this._FeedbackType;
+		}
+		set
+		{
+			if ((this._FeedbackType != value))
+			{
+				this.OnFeedbackTypeChanging(value);
+				this.SendPropertyChanging();
+				this._FeedbackType = value;
+				this.SendPropertyChanged("FeedbackType");
+				this.OnFeedbackTypeChanged();
 			}
 		}
 	}
@@ -5152,7 +5248,7 @@ public partial class tblNotification : INotifyPropertyChanging, INotifyPropertyC
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
 	public string Description
 	{
 		get

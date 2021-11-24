@@ -118,9 +118,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkRead" runat="server" Style="font-size: 15px; border-bottom: 1px solid #e6cb29;" CommandName="Read" CommandArgument='<%# Eval("NotificationID") %>'>
                                                 <b><%# Eval("Title")%></b><br />
-                                                <%# Eval("Description")%>
+                                             <%--   <%# Eval("Description")%>--%>
                                                 <%--<hr style="border-color: #f2e2e2; margin-top: 8px; margin-bottom: -4px;" />--%>
                                     </asp:LinkButton>
+                                   <div class="col-md-12 text-justify" style="font-size: 15px; color:black">
+                                         <asp:Literal  runat="server" Text=<%# Eval("Description")%> ></asp:Literal>
+                                      
+                                    </div>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
@@ -199,6 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
+            
         </div>
     </form>
 </body>
