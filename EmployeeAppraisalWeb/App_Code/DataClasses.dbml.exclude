@@ -92,7 +92,7 @@
       <Column Name="Deadlines" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
       <Column Name="Communication" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
       <Column Name="Cooperation" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
-      <Column Name="ClientFeedback" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
+      <Column Name="FeedbackRating" Type="System.Decimal" DbType="Decimal(3,1)" CanBeNull="true" />
       <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
@@ -166,6 +166,7 @@
       <Column Name="peerEmpID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ManagerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="FeedbackType" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.tblInquiry" Member="tblInquiries">
@@ -251,9 +252,10 @@
     <Type Name="tblNotification">
       <Column Name="NotificationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Title" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AppraiselType" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.tblNotificationDetail" Member="tblNotificationDetails">

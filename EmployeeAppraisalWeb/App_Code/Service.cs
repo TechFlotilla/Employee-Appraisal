@@ -1597,6 +1597,11 @@ public class Service : IService
                         select obj.ClientID).Single();
             Feedback.ClientID = Data;
         }
+        Feedback.Year = DateTime.Now.Year;
+        Feedback.FeedbackType = "Client";
+        Feedback.EmpID = null;
+        Feedback.ManagerID = null;
+        Feedback.peerEmpID = null;
         Feedback.IsRead = false;
         DC.tblFeedbacks.InsertOnSubmit(Feedback);
         DC.SubmitChanges();

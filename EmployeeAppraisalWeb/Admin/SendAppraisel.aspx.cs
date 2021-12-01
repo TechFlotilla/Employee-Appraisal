@@ -167,31 +167,33 @@ public partial class Admin_SendAppraisel : System.Web.UI.Page
             return null;
         List<tblEmployee> employees = new List<tblEmployee>();
 
-        if(count>1)
-        {
-            List<tblTeam>tbl = DC.tblTeams.Where(ob => ob.ProjectID == ProjectID).Select(ob => ob).ToList();
-            foreach (tblTeam teams in tbl)
+       
+        
+            List<tblTeam> teams = DC.tblTeams.Where(ob => ob.ProjectID == ProjectID).Select(ob => ob).ToList();
+            foreach (tblTeam item in teams)
             {
                 var Datas = (from obj in DC.tblTeamMembers
-                             where obj.TeamID == teams.TeamID
+                             where obj.TeamID == item.TeamID
                              join obj2 in DC.tblEmployees
                              on obj.EmpID equals obj2.EmpID
                              select obj2).Distinct();
                 employees.AddRange(Datas);
             }
+            var projectManager = DC.tblEmployees.First(x => x.EmpID == teams.First().CreatedBy);
+            employees.Add(projectManager);
 
             var empData = employees.AsQueryable();
             return empData;
-        }
         
-         var team = DC.tblTeams.SingleOrDefault(ob => ob.ProjectID == ProjectID);
-            var Data = (from obj in DC.tblTeamMembers
-                        where obj.TeamID == team.TeamID
-                        join obj2 in DC.tblEmployees
-                        on obj.EmpID equals obj2.EmpID
-                        select obj2).Distinct();
+        
+         //var team = DC.tblTeams.SingleOrDefault(ob => ob.ProjectID == ProjectID);
+         //   var Data = (from obj in DC.tblTeamMembers
+         //               where obj.TeamID == team.TeamID
+         //               join obj2 in DC.tblEmployees
+         //               on obj.EmpID equals obj2.EmpID
+         //               select obj2).Distinct();
 
-            return Data;
+         //   return Data;
     }
 
 
@@ -203,11 +205,7 @@ public partial class Admin_SendAppraisel : System.Web.UI.Page
             List<tblTeam> employees = new List<tblTeam>();
             List<tblEmployee> list = BindEmployee(Convert.ToInt32(SelectProject.SelectedValue)).ToList();
             var count = DC.tblTeams.Count(ob => ob.ProjectID == Convert.ToInt32(SelectProject.SelectedValue));
-            foreach (var item in list)
-            {
-                EmpID = item.EmpID;
-            }
-
+           
             //foreach (tblEmployee item in emp )
             //{
             //    RadioButton rd = (RadioButton)item.FindControl("rdEmployee");
@@ -221,43 +219,53 @@ public partial class Admin_SendAppraisel : System.Web.UI.Page
 
 
             //Assign Project Manager
-            // bool acknow = ProjectObject.AssignProject(ProjectID, EmpID, Convert.ToInt32(Session["AdminID"]));
+          
             //ProjectName
             tblProject ProjectName = (from ob in DC.tblProjects
                                       where ob.ProjectID == Convert.ToInt32(SelectProject.SelectedValue)
                                       select ob).Single();
             //Notification
+            int projectId = Convert.ToInt32(SelectProject.SelectedValue);
 
-            //for (int emp = 0; count < 0; count++)
-            //{
+            int notificationscount = (from ob in DC.tblNotifications
+                                             where ob.CreatedBy == Convert.ToInt32(Session["AdminID"].ToString())
+                                             select ob).Count();
 
-            //}
+            
+                //int notifications = (from ob in DC.tblNotifications
+                //                     where ob.CreatedBy == Convert.ToInt32(Session["AdminID"].ToString())
+                //                     select ob.CreatedOn.Month).Distinct().SingleOrDefault();
+                //if(notifications==DateTime.Now.Month)
+                //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('you cannot send appraisel notification');", true);
+          
 
-            tblNotification Notification = new tblNotification();
+                foreach (var item in list)
+                {
+                    tblNotification Notification = new tblNotification();
 
-            Notification.Title = "Appraisel Notification";
-            string description = " <a href=MainAppraiselForm.aspx runat=server>Click Here</a>";
-           // string description = "<link href=MainAppraiselForm.aspx text=Click - Here./>";
-            Notification.Description = "Enter your Appraisel for" + " " + ProjectName.Title + " " + description;
-            Notification.CreatedOn = DateTime.Now;
-            Notification.CreatedBy = Convert.ToInt32(Session["AdminID"]);
-            DC.tblNotifications.InsertOnSubmit(Notification);
-            DC.SubmitChanges();
-            tblNotification NID = (from obID in DC.tblNotifications
-                                   orderby obID.NotificationID descending
-                                   select obID).First();
+                    Notification.Title = "Appraisel Notification";
+                    string description = " <a href=MainAppraiselForm.aspx?ProjectID=" + projectId + ">Click Here</a>";
+                    Notification.Description = "Enter your Appraisel for" + " " + ProjectName.Title + " " + description;
+                    Notification.CreatedOn = DateTime.Now;
+                    Notification.CreatedBy = Convert.ToInt32(Session["AdminID"]);
 
-            tblNotificationDetail Detail = new tblNotificationDetail();
-            Detail.NotificationID = NID.NotificationID;
-            Detail.PersonID = EmpID;
-            Detail.IsAdmin = false;
-            Detail.IsRead = false;
-            Detail.IsNotify = false;
-            DC.tblNotificationDetails.InsertOnSubmit(Detail);
-            DC.SubmitChanges();
+                    DC.tblNotifications.InsertOnSubmit(Notification);
+                    DC.SubmitChanges();
+                    tblNotification NID = (from obID in DC.tblNotifications
+                                           orderby obID.NotificationID descending
+                                           select obID).First();
 
-            Response.Redirect(Request.RawUrl);
-
+                    tblNotificationDetail Detail = new tblNotificationDetail();
+                    Detail.NotificationID = NID.NotificationID;
+                    Detail.PersonID = item.EmpID;
+                    Detail.IsAdmin = false;
+                    Detail.IsRead = false;
+                    Detail.IsNotify = false;
+                    DC.tblNotificationDetails.InsertOnSubmit(Detail);
+                    DC.SubmitChanges();
+                }
+                Response.Redirect(Request.RawUrl);
+            
             //Response.Write(acknow);
         }
         catch (Exception ex)

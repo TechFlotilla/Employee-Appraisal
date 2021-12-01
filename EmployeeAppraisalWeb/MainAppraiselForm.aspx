@@ -63,15 +63,33 @@
             font-family: FontAwesome;
         }
     </style>
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function pageLoad() {
+            jQuery(document).ready(function () {
+                var v = $("#<%=txtRate.ClientID %>").val();
+                //alert(v);
+                $("input[name=starC][value=" + v + "]").attr('checked', 'checked');
+
+                $('input:radio[name="star"]').change(function () {
+                    //alert($("input[type=radio]:checked").val());
+                    $("#<%=txtRate.ClientID %>").val($("input[type=radio]:checked").val());
+                    //alert($("#<%=txtRate.ClientID %>").val().toString());
+                });
+            });
+        }
+
+    </script>
     <style>
-         input[type=range] {
+              input[type=range] {
             -webkit-appearance: none;
             width: 100%;
             margin: 13.8px 0;
         }
-          input[type=range]:focus {
+
+            input[type=range]:focus {
                 outline: none;
-          }
+            }
 
             input[type=range]::-webkit-slider-runnable-track {
                 width: 100%;
@@ -80,7 +98,8 @@
                 background: #008BFF;
                 border-radius: 1.3px;
             }
-             input[type=range]::-webkit-slider-thumb {
+
+            input[type=range]::-webkit-slider-thumb {
                 /*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
                 border: 1px solid #000000;
                 height: 20px;
@@ -96,22 +115,94 @@
                 background: #367ebd;
             }
 
+            input[type=range]::-moz-range-track {
+                width: 100%;
+                height: 8.4px;
+                cursor: pointer;
+                box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+                background: #3071a9;
+                border-radius: 1.3px;
+                border: 0.2px solid #010101;
+            }
+
+            input[type=range]::-moz-range-thumb {
+                box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+                border: 1px solid #000000;
+                height: 36px;
+                width: 16px;
+                border-radius: 3px;
+                background: #fff0ff;
+                cursor: pointer;
+            }
+
+            input[type=range]::-ms-track {
+                width: 100%;
+                height: 8.4px;
+                cursor: pointer;
+                background: transparent;
+                border-color: transparent;
+                color: transparent;
+            }
+
+            input[type=range]::-ms-fill-lower {
+                background: #2a6495;
+                border: 0.2px solid #010101;
+                border-radius: 2.6px;
+                box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            }
+
+            input[type=range]::-ms-fill-upper {
+                background: #3071a9;
+                border: 0.2px solid #010101;
+                border-radius: 2.6px;
+                box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            }
+
+            input[type=range]::-ms-thumb {
+                box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+                border: 1px solid #000000;
+                height: 36px;
+                width: 16px;
+                border-radius: 3px;
+                background: #fff0ff;
+                cursor: pointer;
+                height: 8.4px;
+            }
+
+            input[type=range]:focus::-ms-fill-lower {
+                background: #3071a9;
+            }
+
+            input[type=range]:focus::-ms-fill-upper {
+                background: #367ebd;
+            }
     </style>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-            var v = $("#<%=txtRate.ClientID %>").val();
-            //alert(v);
-            $("input[name=starC][value=" + v + "]").attr('checked', 'checked');
+    
+    <style>
+        .fileContainer {
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            padding: 10px;
+          /*  margin-left: 2px;*/
+        }
 
-            $('input:radio[name="star"]').change(function () {
-                //alert($("input[type=radio]:checked").val());
-                $("#<%=txtRate.ClientID %>").val($("input[type=radio]:checked").val());
-                //alert($("#<%=txtRate.ClientID %>").val().toString());
-            });
-        });
-
-    </script>
+            .fileContainer [type=file] {
+                cursor: inherit;
+                display: block;
+                font-size: 999px;
+                filter: alpha(opacity=0);
+                min-height: 50%;
+                min-width: 50%;
+                opacity: 0;
+                position: absolute;
+                right: 0;
+                text-align: right;
+                top: 0;
+            }
+    </style>
+   <%--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>--%>
+  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:scriptmanager id="ScriptManager1" runat="server"></asp:scriptmanager>
@@ -128,14 +219,12 @@
                                         <asp:Label ID="lblEmail" class="header" runat="server">Email Address <span>:</span></asp:Label>
                                     </div>
                                     <div class="col-md-6" style="margin-top: 20px; margin-left: -18px;">
-                                        <asp:DropDownList ID="ddEmployee" runat="server" Style="font-size: 14px; border: 1px solid #fff; color: #fff; height: 35px; width: 250px; border-radius: 5px;" AutoPostBack="true">
+                                        <asp:DropDownList ID="ddEmployee" runat="server" Style="font-size: 14px; border: 1px solid #fff; color: #fff; height: 35px; width: 250px; border-radius: 5px;" AutoPostBack="true" OnSelectedIndexChanged="ddEmployee_SelectedIndexChanged">
                                             <asp:ListItem Value="EmpMail">Employees-Mail</asp:ListItem>
-                                            <%--<asp:ListItem Value="1">PHP Book</asp:ListItem>
-                                        <asp:ListItem Value="Products">Products</asp:ListItem>
-                                        <asp:ListItem Value="Products">Products</asp:ListItem>--%>
                                         </asp:DropDownList>
                                     </div>
                                 </div>
+                                
 
                                 <div class="col-md-12" style="margin-top: 30px;">
                                     <div class="col-md-6 header" style="margin-left:-8px;">
@@ -145,29 +234,22 @@
                                         <asp:TextBox ID="txtName" class="form-control" runat="server" placeholder="Employe Name" title="Please enter your Full Name" required="" pattern="[a-zA-Z ]+" Style="font-size: 14px; border: 1px solid #fff; color: #fff; height: 35px; width: 250px;"></asp:TextBox>
                                     </div>
                                 </div>
-
-
-                            </div>
-                            <div class="grid-agileits2">
-                                <div class="col-md-12" style="">
-                                    <div class="col-md-6 header" style="margin-left:-16px;">
+                                   <div class="col-md-12" style="margin-top: 30px;">
+                                    <div class="col-md-6 header" style="margin-left:-8px;">
                                         <asp:Label ID="lblProduct" class="header" runat="server">Products <span>:</span></asp:Label>
                                     </div>
                                 </div>
                                 <div class="col-md-6" id="select" style="margin-top: 20px; margin-left: -2px;">
                                     <asp:DropDownList ID="ddProduct" runat="server" Style="font-size: 14px; border: 1px solid #fff; color: #fff; height: 35px; width: 250px; border-radius: 5px;">
                                         <asp:ListItem Value="Products">Products</asp:ListItem>
-                                        <%--<asp:ListItem Value="1">PHP Book</asp:ListItem>
-                                        <asp:ListItem Value="Products">Products</asp:ListItem>
-                                        <asp:ListItem Value="Products">Products</asp:ListItem>--%>
                                     </asp:DropDownList>
                                 </div>
-                                <div class="col-md-12" style="margin-top: 30px; margin-left:0px;">
-                                    
-                                    <div class="col-md-6" style="margin-top: 20px; margin-left: -18px;">
-                                              <div class="col-md-3" style="border: 0px solid; padding-bottom: 31px;">
-                                    <div id="PanelAppraisal" runat="server">
-                                        <asp:LinkButton ID="LinkButton1" runat="server" Width="100%" Style="font-weight: bolder; color: #5a5a5a; border: 0px solid; border-bottom: 1px solid; padding-bottom: 2px; border-bottom-color: #808080;">Employee Appraisal</asp:LinkButton>
+
+                            </div>
+                            <div class="grid-agileits2">
+                                 <div id="PanelAppraisal" runat="server" style="margin-top:10px;">
+                                        <%--<asp:LinkButton ID="LinkButton1" class="header" runat="server" Width="100%" Style="font-weight: bolder; color: #5a5a5a; border: 0px solid; border-bottom: 1px solid; padding-bottom: 2px; border-bottom-color: #808080;">Employee Appraisal              :</asp:LinkButton>--%>
+                                       <asp:Label ID="Label1" class="header" runat="server">Employee Appraisal  <span>:</span></asp:Label>
                                         <div class="col-md-12" style="margin-top: 8px; margin-left: -30px;">
                                             <div class="col-md-5" style="margin-top: 7px;">
                                                 <asp:Label ID="Label2" runat="server" Text="Quality" Style="font-size: 14px; color: #808080; margin-top: 10px;"></asp:Label>
@@ -204,14 +286,24 @@
                                                 <asp:TextBox ID="rngCooperation" type="range" runat="server" min="1" max="5" Text="1" Style="cursor: pointer;"></asp:TextBox>
                                             </div>
                                         </div>
+
+                                     <div class="col-md-7" style="margin-top: 8px; margin-left: -30px;" >
+                                         <asp:Label ID="Label4" class="header" runat="server">Employee Appraisal  <span>:</span></asp:Label>
+                                         <div>
+                                             <asp:DropDownList ID="Appraisel_type" runat="server" Style="font-size: 14px; border: 1px solid #fff; color: #fff; height: 35px; width: 250px; border-radius: 5px;">
+                                                 <asp:ListItem>Yearly</asp:ListItem>
+                                                 <asp:ListItem>Quarterly</asp:ListItem>
+                                                 <asp:ListItem>HalfYearly</asp:ListItem>
+                                             </asp:DropDownList>
+                                         </div>
+                                     </div>
                                     </div>
-                                </div>
-                                    </div>
-                                </div>
-                            </div>
+                                
+                                </div>    
+                             </div>
+                              
                         </div>
-                        <div class="clear"></div>
-                    </div>
+                      
                     <div class="col-md-12 content-wthree2" style="margin-top: 30px; margin-left: 10px;">
                         <div class="grid-w3layouts1">
                             <div class="w3-agile1">
@@ -233,9 +325,19 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="clear"></div>
-                    </div>
+                        <div>
+                            <div  class="col-md-6 header"  style="margin-left:-16px;">
+                                        <asp:Label ID="Label3" class="header" runat="server">Appraisel Type <span>:</span></asp:Label>
+                                    </div>
+                            <div style="margin-left:-16px;">
+                                <asp:RadioButtonList runat="server" id="Feedback_Type">
+                                    <asp:ListItem>PeerAppraisel</asp:ListItem>
+                                    <asp:ListItem>SelfAppraisel</asp:ListItem>
+                                    <asp:ListItem>ManagerAppraisel</asp:ListItem>
+                                </asp:RadioButtonList>
+                            </div>
+                        </div>
+                       
                     <div class="col-md-12 content-wthree3">
                         <div class="col-md-12" style="margin-left:5px;">
                             <div class="col-md-12 enquiry" style="margin-left: 15px;">
@@ -247,6 +349,8 @@
                             <div class="clear"></div>
                         </div>
                     </div>
+                       
+                    </div>
                     <div class="content-wthree4">
                         <div class="col-md-12" style="margin-left: 10px; margin-top: 80px;">
                             <asp:Button ID="btnSubmit" class="register" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
@@ -257,7 +361,7 @@
                         <div class="clear"></div>
                     </div>
                 </div>
-            </div>
+         </div>
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnSubmit" />

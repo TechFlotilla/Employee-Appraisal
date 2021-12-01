@@ -82,7 +82,7 @@ public partial class EmployeeProfile : System.Web.UI.Page
         divCommunicationPoint.Style.Add("width", Data6.Communication.ToString() + "%");
 
         var Data7 = DC.tblEmpAppraisals.Single(ob => ob.EmpID == Convert.ToInt32(Session["EmployeeID"]));
-        divClientFeedbackPoint.Style.Add("width", Data7.ClientFeedback.ToString() + "%");
+        divClientFeedbackPoint.Style.Add("width", Data7.FeedbackRating.ToString() + "%");
     }
 
     protected void lnkEdit_Click(object sender, EventArgs e)

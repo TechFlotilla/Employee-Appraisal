@@ -235,7 +235,7 @@ public partial class FeedBack : System.Web.UI.Page
                     tblEmpAppraisal Appraisal = (from ob in DC.tblEmpAppraisals
                                                  where ob.EmpID == Manager.EmpID
                                                  select ob).Single();
-                    Appraisal.ClientFeedback += Convert.ToInt32(Point);
+                    Appraisal.FeedbackRating += Convert.ToInt32(Point);
 
                 }
                 else
@@ -248,7 +248,7 @@ public partial class FeedBack : System.Web.UI.Page
                     Appraisal.Deadlines = Convert.ToDecimal(0.0);
                     Appraisal.Communication = Convert.ToDecimal(0.0);
                     Appraisal.Cooperation = Convert.ToDecimal(0.0);
-                    Appraisal.ClientFeedback = Convert.ToDecimal(Point);
+                    Appraisal.FeedbackRating = Convert.ToDecimal(Point);
                     Appraisal.CreatedOn = DateTime.Now;
                     DC.tblEmpAppraisals.InsertOnSubmit(Appraisal);
                     DC.SubmitChanges();
@@ -273,7 +273,7 @@ public partial class FeedBack : System.Web.UI.Page
                         tblEmpAppraisal Appraisal = (from ob in DC.tblEmpAppraisals
                                                      where ob.EmpID == data.EmpID
                                                      select ob).Single();
-                        Appraisal.ClientFeedback += Convert.ToInt32(Point);
+                        Appraisal.FeedbackRating += Convert.ToInt32(Point);
 
                     }
                     else
@@ -286,7 +286,7 @@ public partial class FeedBack : System.Web.UI.Page
                         Appraisal.Deadlines = Convert.ToDecimal(0.0);
                         Appraisal.Communication = Convert.ToDecimal(0.0);
                         Appraisal.Cooperation = Convert.ToDecimal(0.0);
-                        Appraisal.ClientFeedback = Convert.ToDecimal(Point);
+                        Appraisal.FeedbackRating = Convert.ToDecimal(Point);
                         Appraisal.CreatedOn = DateTime.Now;
                         DC.tblEmpAppraisals.InsertOnSubmit(Appraisal);
                         DC.SubmitChanges();
@@ -314,7 +314,7 @@ public partial class FeedBack : System.Web.UI.Page
                         tblEmpAppraisal Appraisal = (from ob in DC.tblEmpAppraisals
                                                      where ob.EmpID == data.EmpID
                                                      select ob).Single();
-                        Appraisal.ClientFeedback += Convert.ToInt32(Point);
+                        Appraisal.FeedbackRating += Convert.ToInt32(Point);
 
                     }
                     else
@@ -327,7 +327,7 @@ public partial class FeedBack : System.Web.UI.Page
                         Appraisal.Deadlines = Convert.ToDecimal(0.0);
                         Appraisal.Communication = Convert.ToDecimal(0.0);
                         Appraisal.Cooperation = Convert.ToDecimal(0.0);
-                        Appraisal.ClientFeedback = Convert.ToDecimal(Point);
+                        Appraisal.FeedbackRating = Convert.ToDecimal(Point);
                         Appraisal.CreatedOn = DateTime.Now;
                         DC.tblEmpAppraisals.InsertOnSubmit(Appraisal);
                         DC.SubmitChanges();

@@ -1987,7 +1987,7 @@ public partial class tblEmpAppraisal : INotifyPropertyChanging, INotifyPropertyC
 	
 	private System.Nullable<decimal> _Cooperation;
 	
-	private System.Nullable<decimal> _ClientFeedback;
+	private System.Nullable<decimal> _FeedbackRating;
 	
 	private System.DateTime _CreatedOn;
 	
@@ -2013,8 +2013,8 @@ public partial class tblEmpAppraisal : INotifyPropertyChanging, INotifyPropertyC
     partial void OnCommunicationChanged();
     partial void OnCooperationChanging(System.Nullable<decimal> value);
     partial void OnCooperationChanged();
-    partial void OnClientFeedbackChanging(System.Nullable<decimal> value);
-    partial void OnClientFeedbackChanged();
+    partial void OnFeedbackRatingChanging(System.Nullable<decimal> value);
+    partial void OnFeedbackRatingChanged();
     partial void OnCreatedOnChanging(System.DateTime value);
     partial void OnCreatedOnChanged();
     partial void OnCreatedByChanging(int value);
@@ -2186,22 +2186,22 @@ public partial class tblEmpAppraisal : INotifyPropertyChanging, INotifyPropertyC
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientFeedback", DbType="Decimal(3,1)")]
-	public System.Nullable<decimal> ClientFeedback
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeedbackRating", DbType="Decimal(3,1)")]
+	public System.Nullable<decimal> FeedbackRating
 	{
 		get
 		{
-			return this._ClientFeedback;
+			return this._FeedbackRating;
 		}
 		set
 		{
-			if ((this._ClientFeedback != value))
+			if ((this._FeedbackRating != value))
 			{
-				this.OnClientFeedbackChanging(value);
+				this.OnFeedbackRatingChanging(value);
 				this.SendPropertyChanging();
-				this._ClientFeedback = value;
-				this.SendPropertyChanged("ClientFeedback");
-				this.OnClientFeedbackChanged();
+				this._FeedbackRating = value;
+				this.SendPropertyChanged("FeedbackRating");
+				this.OnFeedbackRatingChanged();
 			}
 		}
 	}
@@ -3363,6 +3363,10 @@ public partial class tblFeedback : INotifyPropertyChanging, INotifyPropertyChang
 	
 	private string _FeedbackType;
 	
+	private string _AppraiselType;
+	
+	private int _CreatedBy;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3393,6 +3397,10 @@ public partial class tblFeedback : INotifyPropertyChanging, INotifyPropertyChang
     partial void OnManagerIDChanged();
     partial void OnFeedbackTypeChanging(string value);
     partial void OnFeedbackTypeChanged();
+    partial void OnAppraiselTypeChanging(string value);
+    partial void OnAppraiselTypeChanged();
+    partial void OnCreatedByChanging(int value);
+    partial void OnCreatedByChanged();
     #endregion
 	
 	public tblFeedback()
@@ -3656,6 +3664,46 @@ public partial class tblFeedback : INotifyPropertyChanging, INotifyPropertyChang
 				this._FeedbackType = value;
 				this.SendPropertyChanged("FeedbackType");
 				this.OnFeedbackTypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppraiselType", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+	public string AppraiselType
+	{
+		get
+		{
+			return this._AppraiselType;
+		}
+		set
+		{
+			if ((this._AppraiselType != value))
+			{
+				this.OnAppraiselTypeChanging(value);
+				this.SendPropertyChanging();
+				this._AppraiselType = value;
+				this.SendPropertyChanged("AppraiselType");
+				this.OnAppraiselTypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="Int NOT NULL")]
+	public int CreatedBy
+	{
+		get
+		{
+			return this._CreatedBy;
+		}
+		set
+		{
+			if ((this._CreatedBy != value))
+			{
+				this.OnCreatedByChanging(value);
+				this.SendPropertyChanging();
+				this._CreatedBy = value;
+				this.SendPropertyChanged("CreatedBy");
+				this.OnCreatedByChanged();
 			}
 		}
 	}

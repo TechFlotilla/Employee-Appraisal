@@ -161,7 +161,7 @@ public partial class EmployeeProfile : System.Web.UI.Page
                 divCommunicationPoint.Style.Add("width", Data6.Communication.ToString() + "%");
 
                 var Data7 = DC.tblEmpAppraisals.Single(ob => ob.EmpID == Convert.ToInt32(Session["EmpID"]));
-                divClientFeedbackPoint.Style.Add("width", Data7.ClientFeedback.ToString() + "%");
+                divClientFeedbackPoint.Style.Add("width", Data7.FeedbackRating.ToString() + "%");
             }
         }
         catch (Exception ex)
@@ -321,7 +321,7 @@ public partial class EmployeeProfile : System.Web.UI.Page
                     EmpAppraisal.Deadlines = Convert.ToDecimal(0.0);
                     EmpAppraisal.Communication = Convert.ToDecimal(0.0);
                     EmpAppraisal.Cooperation = Convert.ToDecimal(0.0);
-                    EmpAppraisal.ClientFeedback = Convert.ToDecimal(0.0);
+                    EmpAppraisal.FeedbackRating = Convert.ToDecimal(0.0);
                     EmpAppraisal.CreatedBy = Convert.ToInt32(Session["EmpID"]);
                     EmpAppraisal.CreatedOn = DateTime.Now;
                     DC.tblEmpAppraisals.InsertOnSubmit(EmpAppraisal);
@@ -388,7 +388,7 @@ public partial class EmployeeProfile : System.Web.UI.Page
                     Skill.Deadlines = Convert.ToDecimal(0.0);
                     Skill.Communication = Convert.ToDecimal(0.0);
                     Skill.Cooperation = Convert.ToDecimal(0.0);
-                    Skill.ClientFeedback = Convert.ToDecimal(0.0);
+                    Skill.FeedbackRating = Convert.ToDecimal(0.0);
                     Skill.CreatedOn = DateTime.Now;
                     DC.tblEmpAppraisals.InsertOnSubmit(Skill);
                 }

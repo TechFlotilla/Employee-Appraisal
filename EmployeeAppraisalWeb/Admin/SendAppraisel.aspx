@@ -20,12 +20,12 @@
         <div class="span4" >
             <div class="widget">
                <h6><asp:Label ID="Label2" runat="server" Text="Employees related to Project"></asp:Label></h6>
-                     
                             <asp:DropDownList ID="Employees" runat="server" Style="font-size: 14px; border: 1px solid #000000; color: #000000; height: 35px; width: 250px; border-radius: 5px;">
                                 <asp:ListItem>----Employees----</asp:ListItem>
                             </asp:DropDownList>
                       </div>
             </div>
+   
         </div>
        <div display="inline-block" class="span4">
            <div class="widget">

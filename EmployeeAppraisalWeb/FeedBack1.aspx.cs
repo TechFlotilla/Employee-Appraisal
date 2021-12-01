@@ -88,7 +88,7 @@ public partial class FeedBack : System.Web.UI.Page
 
         foreach (tblEmpAppraisal data in datas)
         {
-            data.ClientFeedback = Convert.ToDecimal(Point);
+            data.FeedbackRating = Convert.ToDecimal(Point);
             DC.SubmitChanges();
         }
     }

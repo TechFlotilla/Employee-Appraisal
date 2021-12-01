@@ -198,7 +198,7 @@ public partial class Admin_ViewAppraisal : System.Web.UI.Page
                 if (cnt > 0)
                 {
                     tblEmpAppraisalPoint Point = DC.tblEmpAppraisalPoints.Single(ob => ob.EmpID == item.EmpID);
-                    Point.AppraisalPoint = (Point.AppraisalPoint + (Convert.ToInt32(item.Skills) + Convert.ToInt32(item.Quality) + Convert.ToInt32(item.Avialibility) + Convert.ToInt32(item.Communication) + Convert.ToInt32(item.Cooperation) + Convert.ToInt32(item.ClientFeedback))) - Convert.ToInt32(item.Deadlines);
+                    Point.AppraisalPoint = (Point.AppraisalPoint + (Convert.ToInt32(item.Skills) + Convert.ToInt32(item.Quality) + Convert.ToInt32(item.Avialibility) + Convert.ToInt32(item.Communication) + Convert.ToInt32(item.Cooperation) + Convert.ToInt32(item.FeedbackRating))) - Convert.ToInt32(item.Deadlines);
                     Point.AppraisalDate = DateTime.Now;
 
                 }
@@ -206,7 +206,7 @@ public partial class Admin_ViewAppraisal : System.Web.UI.Page
                 {
                     tblEmpAppraisalPoint Point = new tblEmpAppraisalPoint();
                     Point.EmpID = item.EmpID;
-                    Point.AppraisalPoint = Convert.ToInt32(item.Skills) + Convert.ToInt32(item.Quality) + Convert.ToInt32(item.Avialibility) + Convert.ToInt32(item.Communication) + Convert.ToInt32(item.Cooperation) + Convert.ToInt32(item.ClientFeedback) - Convert.ToInt32(item.Deadlines);
+                    Point.AppraisalPoint = Convert.ToInt32(item.Skills) + Convert.ToInt32(item.Quality) + Convert.ToInt32(item.Avialibility) + Convert.ToInt32(item.Communication) + Convert.ToInt32(item.Cooperation) + Convert.ToInt32(item.FeedbackRating) - Convert.ToInt32(item.Deadlines);
                     Point.AppraisalDate = DateTime.Now;
                     Point.CreatedOn = DateTime.Now;
                     DC.tblEmpAppraisalPoints.InsertOnSubmit(Point);
